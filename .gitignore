@@ -1,0 +1,24 @@
+# Maven target directory
+target/
+
+# Bytecode
+*.class
+
+# SQLite databases
+*.db
+*.db-journal
+*.db-wal
+*.db-shm
+wallet.db*
+
+# Logs
+*.log
+
+# IDE specific files
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.DS_Store

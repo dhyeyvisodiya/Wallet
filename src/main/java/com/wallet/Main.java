@@ -5,6 +5,12 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        if (System.getProperty("os.name", "").toLowerCase().contains("win")) {
+            try {
+                new ProcessBuilder("cmd.exe", "/c", "chcp 65001 > nul").inheritIO().start().waitFor();
+            } catch (Exception ignored) {
+            }
+        }
         System.setOut(new java.io.PrintStream(System.out, true, java.nio.charset.StandardCharsets.UTF_8));
 
         Database database = new Database("wallet.db");
@@ -24,7 +30,7 @@ public class Main {
             if (!scanner.hasNextLine()) {
                 break;
             }
-            String line = scanner.nextLine().trim();
+            String line = scanner.nextLine().replace("\uFEFF", "").trim();
             if (line.isEmpty()) {
                 continue;
             }
